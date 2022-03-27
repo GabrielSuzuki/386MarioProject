@@ -18,7 +18,7 @@ class Game:
 
     def __init__(self):
         pg.init()
-        self.background = pg.image.load(f'images/NES - Super Mario Bros - World 1-1.png')
+        #self.background = pg.image.load(f'images/NES - Super Mario Bros - World 1-1.png')
         self.settings = Settings()
         #self.stats = Stats(game=self)
         self.screen = pg.display.set_mode((self.settings.screen_width,
@@ -59,11 +59,35 @@ class Game:
         #while True:
             #Checks if Mario in in the main level
             #does only once
-            if stats.activate_main_lvl:
+            #if stats.activate_main_lvl:
                 #might need to add flag/pole
-                lvl_map = Map(screen, settings, bricks, pipes,secret_pipes, goombas, koopas)
-                lvl_map.build_brick()
+            #    lvl_map = Map(screen, settings, bricks, pipes,secret_pipes, goombas, koopas)
+            #    lvl_map.build_brick()
                 #generate pipes and flag/pole
+            #    for i in range(0,6):
+            #        pipe = Pipe(screen,settings,i)
+            #        pipes.add(pipe)
+            #    flag = Flag(screen,settings,stats)
+            #    flags.add(flag)
+            #    pole = Pole(screen, settings)
+            #    poles.add(pole)
+            #   stats.activate_main_lvl = False
+            #Checks if Mario has activated the secret level
+            #does this only once
+            #if stats.activate_secret:
+                #clears everything belonging to main level to
+            #    pipes.empty()
+            #    bricks.empty()
+            #    enemies.empty()
+            #    poles.empty()
+            #    flags.empty()
+            #    lvl_map = Map(screen,settings,bricks,pipes,mario,poles,flags,enemies)
+            #    lvl_map.build_brick()
+
+            #    stats.activate_secret = False
+            #    stats.main_level = False
+
+
 
 
     def restart(self):
@@ -86,7 +110,7 @@ class Game:
         sleep(0.5)
 
     def update(self):
-        self.ship.update()
+        #self.ship.update()
         #self.alien_fleet.update()
         #self.lasers.update()
         #self.alien_lasers.update()
@@ -103,6 +127,7 @@ class Game:
         #    self.sound.stop_bg()
         #    self.bg2 = True
         #    self.sound.speed_up_bg2()
+        self.temp = 1
     def draw(self):
         self.screen.fill(self.bg_color)
         #self.ship.draw()
@@ -135,6 +160,22 @@ def main():
     #lp.show()
     g.play()
 
+    #unfinished
+    #stats.game_active()
+    #gf.check_events(mario, stats, clips, fireballs)
+    #if mario.rect.right >= 600 and stats.main_level:
+    #    diff = mario.rect.right - 600
+    #    mario.rect.right = 600
+    #    level.shifting_world(-diff)
+
+    #if the play gets near the left side,shift the world right commented
+    #if mario.rect.left <= 100
+    #    diff = 100 - mario.rect.left
+    #    mario.rect.left = 100
+    #    level.shifting_world(diff)
+
+    #gf.update_screen(screen,mario,settings,level,pipes,display,flags,poles,radio,clips,fireballs,secret_pipes)
+    #pygame.display.flip()
 
 if __name__ == '__main__':
     main()
