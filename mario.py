@@ -12,10 +12,7 @@ class Mario(Sprite):
 
     #exploding_images = [pg.image.load(f'images/explode{n}.png') for n in range(8)]
     #images = [pg.image.load(f'images/ship.bmp') for n in range(1)]
-    filename = 'images/allsprites.png'
-    allSprites = Spritesheet(filename)
-    mario_rect = (70, 0, 32, 32)
-    mario_image = allSprites.image_at(mario_rect)
+
 
     def __init__(self, game):
         super().__init__()
@@ -28,15 +25,20 @@ class Mario(Sprite):
         self.stats = game.stats
         #self.image = pg.image.load('images/ship.bmp')
 
+        filename = 'images/allsprites.png'
+        allSprites = Spritesheet(filename)
+        mario_rect = (70, 0, 32, 32)
+        self.mario_image = allSprites.image_at(mario_rect)
+
         #mario_images = pg.image.load(mario_image)
-        self.rect = self.image.get_rect()
+        self.rect = self.mario_image.get_rect()
         self.screen_rect = self.screen.get_rect()
         self.center_bottom()
         self.v = Vector()
     #    self.firing = False
         self.frames = 0
         #self.exploding_timer = Timer(image_list=Ship.exploding_images, delay=200, is_loop=False)
-        self.normal_timer = Timer(image_list=Mario.mario_image, delay=1000, is_loop=True)
+        #self.normal_timer = Timer(image_list=self.mario_image, delay=1000, is_loop=True)
     #    self.timer = self.normal_timer
     #    self.dying = False
 
@@ -99,9 +101,9 @@ class Mario(Sprite):
         self.frames += 1
 
     def draw(self):
-        image = self.timer.image()
-        rect = image.get_rect()
+        #image = self.timer.image()
+        rect = self.mario_image.get_rect()
         rect.x, rect.y = self.rect.x, self.rect.y
-        self.screen.blit(image, rect)
+        self.screen.blit(self.mario_image, rect)
         # self.screen.blit(self.image, self.rect)
         # pg.draw.rect(self.screen, Game.RED, self.rect, 1)
