@@ -43,7 +43,7 @@ class Game:
         #for pipe in pipes:
         #    secret_pipes.add(pipe)
 
-        #lag = Flag(screen,settings,stats)
+        #flag = Flag(screen,settings,stats)
         #flags.add(flag)
         #pole = Pole(screen, settings)
         #poles.add(pole)
