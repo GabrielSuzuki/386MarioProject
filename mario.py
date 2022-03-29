@@ -3,7 +3,7 @@ from vector import Vector
 from timer import Timer
 from pygame.sprite import Sprite, Group
 #from sound import Sound
-from Spritesheet import SpriteSheet
+from spritesheet import Spritesheet
 
 class Mario(Sprite):
 
@@ -13,7 +13,7 @@ class Mario(Sprite):
     #exploding_images = [pg.image.load(f'images/explode{n}.png') for n in range(8)]
     #images = [pg.image.load(f'images/ship.bmp') for n in range(1)]
     filename = 'images/allsprites.png'
-    allSprites = SpriteSheet(filename)
+    allSprites = Spritesheet(filename)
     mario_rect = (70, 0, 32, 32)
     mario_image = allSprites.image_at(mario_rect)
 

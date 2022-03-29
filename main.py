@@ -28,6 +28,7 @@ class Game:
         #self.sound = Sound()
         #self.sb = Scoreboard(game=self)
         pg.display.set_caption("Mario Game")
+        pg.display.init()
         self.mario = Mario(game=self)
         #self.ship = Ship(game=self)
         #self.alien_fleet = AlienFleet(game=self)
