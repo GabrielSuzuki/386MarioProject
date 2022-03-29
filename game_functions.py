@@ -18,7 +18,8 @@ dir_keys = {pg.K_LEFT: LEFT, pg.K_a: LEFT,
             pg.K_DOWN: DOWN, pg.K_s: DOWN}
 
 def check_events(game):
-    ship = game.ship
+    mario = game.mario
+    #ship = game.ship
 
     for e in pg.event.get():
         if e.type == pg.QUIT:
@@ -26,15 +27,19 @@ def check_events(game):
         elif e.type == pg.KEYDOWN:
             if e.key in dir_keys:
                 v = dirs[dir_keys[e.key]]
-                ship.inc_add(v)
+                mario.inc_add(v)
+                #ship.inc_add(v)
             elif e.key == pg.K_SPACE:
-              game.ship.toggle_firing()
+                pass
+              #game.ship.toggle_firing()
         elif e.type == pg.KEYUP:
             if e.key in dir_keys:
                 v = dirs[dir_keys[e.key]]
-                ship.inc_add(-v)
+                mario.inc_add(-v)
+                #ship.inc_add(-v)
             elif e.key == pg.K_SPACE:
-              game.ship.toggle_firing()
+                pass
+              #game.ship.toggle_firing()
 
 def update_screen():
     pass
