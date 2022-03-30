@@ -18,7 +18,7 @@ class Stats:
         self.main_lvl = False
         self.flag_reach_bot = False
         self.game_active = False
-        self.moveFoward = False
+        self.moveFoward = 0
 
     def __del__(self):
         self.save_high_score()

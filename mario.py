@@ -20,6 +20,7 @@ class Mario(Sprite):
         self.screen = game.screen
         self.settings = game.settings
         self.display = game.display
+        self.level = game.level
     #    self.sound = game.sound
     #    self.alien_fleet = None
     #    self.lasers = None
@@ -95,16 +96,23 @@ class Mario(Sprite):
     #    if self.dying and self.timer.is_expired():
     #        self.die()
         self.center += self.v * self.settings.ship_speed_factor
+
         self.clamp()
         self.rect.centerx, self.rect.centery = self.center.x, self.center.y
     #    if self.frames % 10 == 0 and self.firing:
     #        self.lasers.fire()
         self.frames += 1
-        if self.rect.centerx >= self.settings.screen_width:
-            self.stats.moveFoward == True
+
+        if self.rect.centerx > self.settings.screen_width / 2 + 1:
+            self.center.x = self.settings.screen_width / 2
+        if self.rect.centerx >= self.settings.screen_width/2:
+            if self.v.x > 0:
+                self.stats.moveFoward = self.v.x * self.settings.ship_speed_factor
+            else:
+                self.stats.moveFoward = 0
         else:
-            self.stats.moveFoward == False
-        print(self.stats.moveFoward)
+            self.stats.moveFoward = 0
+        #print(self.stats.moveFoward)
         #self.display.move(self.v * self.settings.ship_speed_factor, 0)
 
     def draw(self):

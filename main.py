@@ -29,6 +29,8 @@ class Game:
         #self.sound = Sound()
         #self.sb = Scoreboard(game=self)
         pg.display.set_caption("Mario Game")
+        self.lvl_map = None
+        self.level = Level(self.screen, self.settings)
         self.display = Display(self.screen, self.stats, game=self)
         self.mario = Mario(game=self)
         #self.ship = Ship(game=self)
@@ -55,9 +57,9 @@ class Game:
         # might need to add flag/pole
 
         #mario = Mario(screen,settings,pipes,bricks,upgrades,fireballs,secret_bricks,secret_pipes,goomba,koopa)
-        self.lvl_map = None
+
         #level = Level(screen,settings,pipes,lvl_map,bricks,pipes,secret_pipes,goomba,koopa)
-        self.level = Level(self.screen,self.settings)
+
 
 
         #clips[0].play[-1]
@@ -117,6 +119,7 @@ class Game:
 
     def update(self):
         self.mario.update()
+        self.display.move()
         #self.ship.update()
         #self.alien_fleet.update()
         #self.lasers.update()
