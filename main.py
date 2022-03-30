@@ -13,6 +13,7 @@ from settings import Settings
 #from barrier import Barriers
 from random import randint
 from level import Level
+from display import Display
 class Game:
     RED = (255, 0, 0)
     pg
@@ -28,7 +29,7 @@ class Game:
         #self.sound = Sound()
         #self.sb = Scoreboard(game=self)
         pg.display.set_caption("Mario Game")
-        pg.display.init()
+        self.display = Display(self.screen, self.stats, game=self)
         self.mario = Mario(game=self)
         #self.ship = Ship(game=self)
         #self.alien_fleet = AlienFleet(game=self)
@@ -57,7 +58,7 @@ class Game:
         self.lvl_map = None
         #level = Level(screen,settings,pipes,lvl_map,bricks,pipes,secret_pipes,goomba,koopa)
         self.level = Level(self.screen,self.settings)
-        #display = Display(screen, stats)
+
 
         #clips[0].play[-1]
         #while True:
@@ -134,6 +135,7 @@ class Game:
         #    self.bg2 = True
         #    self.sound.speed_up_bg2()
         self.temp = 1
+
     def draw(self):
         self.screen.fill(self.bg_color)
         self.level.blitme()
