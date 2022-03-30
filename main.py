@@ -3,15 +3,17 @@ import pygame as pg
 from sys import exit
 import game_functions as gf
 from time import sleep
-#from stats import Stats
+from stats import Stats
 #from scoreboard import Scoreboard
 #from laser import Lasers
-#from mario import Mario
+from mario import Mario
 #from alien import AlienFleet
 from settings import Settings
 #from sound import Sound
 #from barrier import Barriers
 from random import randint
+from level import Level
+from display import Display
 class Game:
     RED = (255, 0, 0)
     pg
@@ -20,13 +22,15 @@ class Game:
         pg.init()
         #self.background = pg.image.load(f'images/NES - Super Mario Bros - World 1-1.png')
         self.settings = Settings()
-        #self.stats = Stats(game=self)
+        self.stats = Stats(game=self)
         self.screen = pg.display.set_mode((self.settings.screen_width,
                                            self.settings.screen_height))
         self.bg_color = self.settings.bg_color
         #self.sound = Sound()
         #self.sb = Scoreboard(game=self)
         pg.display.set_caption("Mario Game")
+        self.display = Display(self.screen, self.stats, game=self)
+        self.mario = Mario(game=self)
         #self.ship = Ship(game=self)
         #self.alien_fleet = AlienFleet(game=self)
         #self.lasers = Lasers(game=self, owner=self.ship)                  # for ship lasers
@@ -51,9 +55,10 @@ class Game:
         # might need to add flag/pole
 
         #mario = Mario(screen,settings,pipes,bricks,upgrades,fireballs,secret_bricks,secret_pipes,goomba,koopa)
-        #lvl_map = None
+        self.lvl_map = None
         #level = Level(screen,settings,pipes,lvl_map,bricks,pipes,secret_pipes,goomba,koopa)
-        #display = Display(screen, stats)
+        self.level = Level(self.screen,self.settings)
+
 
         #clips[0].play[-1]
         #while True:
@@ -99,6 +104,7 @@ class Game:
         #self.lasers.empty()
         #self.alien_fleet.empty()
         #self.alien_fleet.create_fleet()
+        self.mario.center_bottom()
         #self.ship.center_bottom()
         #self.ship.reset_timer()
         self.update()
@@ -110,6 +116,7 @@ class Game:
         sleep(0.5)
 
     def update(self):
+        self.mario.update()
         #self.ship.update()
         #self.alien_fleet.update()
         #self.lasers.update()
@@ -128,8 +135,11 @@ class Game:
         #    self.bg2 = True
         #    self.sound.speed_up_bg2()
         self.temp = 1
+
     def draw(self):
         self.screen.fill(self.bg_color)
+        self.level.blitme()
+        self.mario.draw()
         #self.ship.draw()
         #self.alien_fleet.draw()
         #self.lasers.draw()

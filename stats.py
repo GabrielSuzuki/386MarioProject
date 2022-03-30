@@ -1,10 +1,4 @@
-#flag_reach_bot
-#activate_secret
-#return_main_level
-#activate_main_lvl
-#activate_secret
-#main_level
-#game_active
+
 
 import os
 
@@ -24,6 +18,7 @@ class Stats:
         self.main_lvl = False
         self.flag_reach_bot = False
         self.game_active = False
+        self.moveFoward = False
 
     def __del__(self):
         self.save_high_score()
