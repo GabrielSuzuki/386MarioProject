@@ -52,7 +52,7 @@ class Level1(tools._State):
         self.setup_checkpoints()
         self.setup_spritegroups()
         self.setup_coins()
-
+        self.highscore = self.load_highscore()
     def setup_background(self):
         """Sets the background image, rect and scales it to the correct
         proportions"""
@@ -1406,10 +1406,27 @@ class Level1(tools._State):
             self.done = True
 
 
+    def load_highscore(self):
+        try:
+            with open("highscore.txt", "r") as f:
+                return int(f.read())
+        except:
+            return 0
+
+    def save_high_score(self):
+        try:
+            with open("highscore.txt", "w+") as f:
+                f.write(str(round(self.highscore, -1)))
+        except:
+            print("highscore.txt was not found")
+
     def set_game_info_values(self):
         """sets the new game values after a player's death"""
-        if self.game_info[c.SCORE] > self.persist[c.TOP_SCORE]:
-            self.persist[c.TOP_SCORE] = self.game_info[c.SCORE]
+        #if self.game_info[c.SCORE] > self.persist[c.TOP_SCORE]:
+        #    self.persist[c.TOP_SCORE] = self.game_info[c.SCORE]
+        if self.game_info[c.SCORE] > self.highscore:
+            self.highscore = self.game_info[c.SCORE]
+            self.save_high_score()
         if self.mario.dead:
             self.persist[c.LIVES] -= 1
 

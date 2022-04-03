@@ -23,7 +23,8 @@ class OverheadInfo(object):
         self.time = 401
         self.current_time = 0
         self.total_lives = game_info[c.LIVES]
-        self.top_score = game_info[c.TOP_SCORE]
+        #self.top_score = game_info[c.TOP_SCORE]
+        self.top_score = self.load_highscore()
         self.state = state
         self.special_state = None
         self.game_info = game_info
@@ -40,6 +41,19 @@ class OverheadInfo(object):
         self.create_time_out_label()
         self.create_main_menu_labels()
 
+    def load_highscore(self):
+        try:
+            with open("highscore.txt", "r") as f:
+                return int(f.read())
+        except:
+            return 0
+
+    def save_high_score(self):
+        try:
+            with open("highscore.txt", "w+") as f:
+                f.write(str(round(self.highscore, -1)))
+        except:
+            print("highscore.txt was not found")
 
     def create_image_dict(self):
         """Creates the initial images for the score"""

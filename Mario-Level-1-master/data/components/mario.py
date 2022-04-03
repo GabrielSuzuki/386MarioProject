@@ -452,7 +452,7 @@ class Mario(pg.sprite.Sprite):
             #if over secret pipe go down it
             print(self.rect.x)
             print(self.rect.y)
-            if self.rect.x > 2415 and self.rect.x < 2528 and self.rect.y == 326:
+            if self.rect.x > 2415 and self.rect.x < 2528 and (self.rect.y == 326 or self.rect.y == 311):
                 print("down")
                 self.rect.x = 9200
                 self.rect.y = 0#go down pipe to secret level
@@ -616,7 +616,7 @@ class Mario(pg.sprite.Sprite):
             elif self.x_vel > self.max_x_vel:
                 self.x_vel -= self.x_accel
             if self.secret == True:
-                if self.rect.x == 9620 and self.rect.y == 498:
+                if self.rect.x == 9620 and (self.rect.y == 498 or self.rect.y == 483):
                     self.secret = False
                     self.backToMain = True
 

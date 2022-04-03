@@ -10,6 +10,7 @@ class Menu(tools._State):
     def __init__(self):
         """Initializes the state"""
         tools._State.__init__(self)
+        self.highscore = self.load_highscore()
         persist = {c.COIN_TOTAL: 0,
                    c.SCORE: 0,
                    c.LIVES: 3,
@@ -19,6 +20,20 @@ class Menu(tools._State):
                    c.CAMERA_START_X: 0,
                    c.MARIO_DEAD: False}
         self.startup(0.0, persist)
+
+    def load_highscore(self):
+        try:
+            with open("highscore.txt", "r") as f:
+                return int(f.read())
+        except:
+            return 0
+
+    def save_high_score(self):
+        try:
+            with open("highscore.txt", "w+") as f:
+                f.write(str(round(self.highscore, -1)))
+        except:
+            print("highscore.txt was not found")
 
     def startup(self, current_time, persist):
         """Called every time the game's state becomes this one.  Initializes
