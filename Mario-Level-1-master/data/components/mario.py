@@ -616,7 +616,7 @@ class Mario(pg.sprite.Sprite):
             elif self.x_vel > self.max_x_vel:
                 self.x_vel -= self.x_accel
             if self.secret == True:
-                if self.rect.x == 9620 and (self.rect.y == 498 or self.rect.y == 483):
+                if (self.rect.x == 9620 and self.rect.y == 498) or (self.rect.x == 9610 and self.rect.y == 458):
                     self.secret = False
                     self.backToMain = True
 
