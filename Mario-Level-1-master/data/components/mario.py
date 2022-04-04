@@ -8,7 +8,7 @@ from . import powerups
 
 
 class Mario(pg.sprite.Sprite):
-    def __init__(self):
+    def __init__(self,level2 = False):
         pg.sprite.Sprite.__init__(self)
         self.sprite_sheet = setup.GFX['mario_bros']
 
@@ -26,6 +26,8 @@ class Mario(pg.sprite.Sprite):
         self.key_timer = 0
         self.secret = False
         self.backToMain = False
+        self.level2 = level2
+        self.goToLevel2 = False
 
     def setup_timers(self):
         """Sets up timers for animations"""
@@ -450,10 +452,10 @@ class Mario(pg.sprite.Sprite):
         if keys[tools.keybinding['down']]:
             self.crouching = True
             #if over secret pipe go down it
-            print(self.rect.x)
-            print(self.rect.y)
+            #print(self.rect.x)
+            #print(self.rect.y)
             if self.rect.x > 2415 and self.rect.x < 2528 and (self.rect.y == 326 or self.rect.y == 311):
-                print("down")
+                #print("down")
                 self.rect.x = 9200
                 self.rect.y = 0#go down pipe to secret level
                 self.secret = True
@@ -619,6 +621,9 @@ class Mario(pg.sprite.Sprite):
                 if (self.rect.x == 9620 and self.rect.y == 498) or (self.rect.x == 9610 and self.rect.y == 458):
                     self.secret = False
                     self.backToMain = True
+            if self.level2 == True:
+                if self.rect.x == 394 and self.rect.y == 390:
+                    self.goToLevel2 = True
 
         else:
             if self.facing_right:
